@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Mom ❄💙</title>
+
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #dff6ff, #b8e7ff, #8fd3f4);
+    min-height: 100vh;
+}
+
+/* Snow */
+#snow-container {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    color: white;
+    animation: fall linear infinite;
+}
+
+@keyframes fall {
+    0% { transform: translateY(0) translateX(0); }
+    50% { transform: translateY(50vh) translateX(30px); }
+    100% { transform: translateY(100vh) translateX(-30px); }
+}
+
+/* Card */
+.card {
+    position: relative;
+    z-index: 2;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(15px);
+    margin: 80px auto;
+    padding: 40px;
+    border-radius: 25px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 500px;
+    color: #003049;
+}
+
+h1 { color: #005f99; }
+h2 { color: #0077b6; }
+
+.photo-frame {
+    margin: 20px auto;
+    width: 200px;
+    height: 200px;
+    padding: 10px;
+    border-radius: 50%;
+    background: linear-gradient(145deg, #ffffffaa, #bde0feaa);
+    box-shadow: 0 0 25px #90e0ef, 0 0 50px #caf0f8;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+button {
+    margin-top: 20px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 20px;
+    background-color: #0077b6;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #023e8a;
+    transform: scale(1.05);
+}
+
+/* Popup */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    animation: pop 0.4s ease;
+}
+
+@keyframes pop {
+    from { transform: scale(0.7); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+.close {
+    position: absolute;
+    right: 25px;
+    top: 20px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+/* Floating Hearts */
+.heart {
+    position: fixed;
+    bottom: -20px;
+    color: #ff4d6d;
+    font-size: 20px;
+    animation: floatHeart linear forwards;
+    pointer-events: none;
+    z-index: 6;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100vh) translateX(40px);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="snow-container"></div>
+
+<div class="card">
+    <h1>Happy Birthday ❄</h1>
+    <h2>My Dearest Mom 💙</h2>
+
+    <div class="photo-frame">
+        <img src="MOM.jpeg" alt="Mom Photo">
+    </div>
+
+    <p>
+        You are my strength, my peace, and my greatest blessing.  
+        May your life sparkle like snow and shine with happiness.  
+        I love you forever ❄💙
+    </p>
+
+    <button onclick="showSurprise()">Click for Surprise ❄</button>
+</div>
+
+<!-- Popup -->
+<div id="popup" class="popup">
+    <div class="popup-content">
+        <span class="close" onclick="closePopup()">&times;</span>
+        <h2>💙 My Beautiful Mom 💙</h2>
+        <p>
+            May Allah bless you with long life, health, and endless happiness.
+            You are my greatest treasure. I love you forever 💙❄
+        </p>
+    </div>
+</div>
+
+
+
+<script>
+// Snow
+const snowContainer = document.getElementById("snow-container");
+
+function createSnow() {
+    const snow = document.createElement("div");
+    snow.classList.add("snowflake");
+    snow.innerHTML = "❄";
+    snow.style.left = Math.random() * window.innerWidth + "px";
+    snow.style.animationDuration = (Math.random() * 5 + 5) + "s";
+    snow.style.fontSize = (Math.random() * 10 + 10) + "px";
+    snow.style.opacity = Math.random();
+    snowContainer.appendChild(snow);
+    setTimeout(() => snow.remove(), 10000);
+}
+setInterval(createSnow, 200);
+
+// Surprise
+function showSurprise() {
+    document.getElementById("popup").style.display = "flex";
+    document.getElementById("birthdaySong").play();
+    startHearts();
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+
+// Floating Hearts
+function startHearts() {
+    const interval = setInterval(() => {
+        const heart = document.createElement("div");
+        heart.classList.add("heart");
+        heart.innerHTML = "💙";
+        heart.style.left = Math.random() * window.innerWidth + "px";
+        heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+        heart.style.animationDuration = (Math.random() * 3 + 3) + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 5000);
+    }, 300);
+
+    setTimeout(() => clearInterval(interval), 5000);
+}
+</script>
+
+</body>
+</html>
